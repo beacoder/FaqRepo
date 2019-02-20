@@ -5,7 +5,7 @@ import sys
 sys.path.insert(0, "/home/ehumche/private/py3-lib/lib/python3.5/site-packages")
 
 from sqlalchemy import Column, Integer, String
-from database import Base, init_db
+from database import Base
 
 
 class User(Base):
