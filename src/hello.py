@@ -6,9 +6,8 @@ sys.path.insert(0, "/home/ehumche/private/py3-lib/lib/python3.5/site-packages")
 
 import pdb
 from flask import Flask
-from database import db_session, init_db
-from models import User
-
+from .database import db_session
+from .models import add_user, add_question_answer, User, Question_Answer
 
 app = Flask(__name__)
 
@@ -20,14 +19,14 @@ def hello_world():
 def shutdown_session(exception=None):
     db_session.remove()
 
-def add_user(name, email):
-    init_db()
-    # pdb.set_trace()
-    if name and email:
-        u = User.query.filter(User.name == name).first()
-        if not u:
-            u = User(name, email)
-            db_session.add(u)
-            db_session.commit()
-
 add_user('name', 'admin@localhost')
+
+add_question_answer('This is the first question?', 'Yes, it is.')
+
+# @app.route('/users')
+# def list_users():
+#     return '-'.join([str(user) for user in  User.query.all()])
+
+# @app.route('/questions')
+# def list_users():
+#     return '-'.join([str(q_a) for q_a in Question_Answer.query.all()])
