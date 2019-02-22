@@ -3,13 +3,26 @@
         {% if title %}
         <title>{{ title }} - faq_repo</title>
         {% else %}
-        <title>Welcome to faq_repo</title>
+        <title>faq_repo</title>
         {% endif %}
     </head>
     <body>
-        <div>faq_repo: <a href="/index">Home</a></div>
+        <div>
+            faq_repo:
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
         <!-- thematic break -->
         <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </body>
 </html>
