@@ -1,0 +1,15 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - faq_repo</title>
+        {% else %}
+        <title>Welcome to faq_repo</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>faq_repo: <a href="/index">Home</a></div>
+        <!-- thematic break -->
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
