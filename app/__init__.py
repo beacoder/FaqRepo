@@ -8,7 +8,7 @@ sys.path.insert(0, "/home/ehumche/private/py3-lib/lib/python3.5/site-packages")
 
 from flask import Flask
 
-# app is memer varialbe of app-package
+# app is member varialbe of app-package
 app = Flask(__name__)
 
 # place at bottom to avoid circular imports
