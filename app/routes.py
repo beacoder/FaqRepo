@@ -3,3 +3,11 @@
 
 import sys
 sys.path.insert(0, "/home/ehumche/private/py3-lib/lib/python3.5/site-packages")
+
+# import app variable from app-module
+from app import app
+
+@app.route('/')
+@app.route('/index')
+def index():
+    return "Hello, World!"
