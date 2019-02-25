@@ -11,6 +11,8 @@ else:
 
 from flask import Flask
 from config import Config
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 # app is member variable of app-package
 app = Flask(__name__)
