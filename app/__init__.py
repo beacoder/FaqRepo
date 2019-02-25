@@ -14,7 +14,7 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-# app is member variable of app-package
+# member variables of app-package
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
