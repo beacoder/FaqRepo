@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+
 if sys.platform == 'darwin':
     sys.path.insert(0, "/Users/chenhuming/workspace/faq_repo/venv/lib/python3.7/site-packages")
 else:
