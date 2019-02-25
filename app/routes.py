@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import sys
-sys.path.insert(0, "/home/ehumche/private/py3-lib/lib/python3.5/site-packages")
+if sys.platform != 'darwin':
+    sys.path.insert(0, "/home/ehumche/private/py3-lib/lib/python3.5/site-packages")
 
 from flask import render_template, flash, redirect, url_for
 from app import app
