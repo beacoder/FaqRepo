@@ -15,6 +15,8 @@ from config import Config
 # app is member variable of app-package
 app = Flask(__name__)
 app.config.from_object(Config)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # place at bottom to avoid circular imports
-from app import routes
+from app import routes, models
