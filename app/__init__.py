@@ -21,6 +21,7 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
+login.login_view = 'login'  # indicate which function handles login
 
 # place at bottom to avoid circular imports
 from app import routes, models

@@ -7,16 +7,18 @@ if sys.platform == 'darwin':
 else:
     sys.path.insert(0, "/home/ehumche/private/py3-lib/lib/python3.5/site-packages")
 
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from app import app
 from app.forms import LoginForm
-from flask_login import current_user, login_user, logout_user
+from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
+from werkzeug.urls import url_parse
 
 # view-function for mapping url to request-handler
 
 @app.route('/')
 @app.route('/index')
+@login_required
 def index():
     user = {'username': 'Huming'}
     posts = [
@@ -42,6 +44,10 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
+        # next_page = request.args.get('next')
+        # if not next_page or url_parse(next_page).netloc != '':
+        #     next_page = url_for('index')
+        # return redirect(next_page)
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 
