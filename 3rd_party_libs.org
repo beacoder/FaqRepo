@@ -1,4 +1,4 @@
-#+title: 3rd party libs for building FAQRepo with flask
+#+title: 3rd party libs for building FAQRepo
 #+author: Huming.Chen
 #+email: chenhuming@gmail.com
 
