@@ -1,0 +1,21 @@
+#+title: 3rd party libs for building FAQRepo with flask
+#+author: Huming.Chen
+#+email: chenhuming@gmail.com
+
+|------------------+-------------------------------------------------------------------|
+| [[http://flask.pocoo.org/docs/1.0/][Flask]]            | Micro web-framework for building websites with python             |
+|------------------+-------------------------------------------------------------------|
+| Flask-Wtf        | Extension for flask to build forms                                |
+|------------------+-------------------------------------------------------------------|
+| Flask-Sqlalchemy | ORM extension for flask to work with database                     |
+|------------------+-------------------------------------------------------------------|
+| Flask-Migrate    | Extension for flask to handle upgrade/downgrade with database     |
+|------------------+-------------------------------------------------------------------|
+| Flask-Login      | Extension for flask to manages user logged-in state               |
+|------------------+-------------------------------------------------------------------|
+| Flask-Mail       | Extension for flask to send mails                                 |
+|------------------+-------------------------------------------------------------------|
+| pyjwt            | Extension to generate secure token for password reset             |
+|------------------+-------------------------------------------------------------------|
+| Flask-Bootstrap  | Extension for flask to use Bootstrap library to beautify websites |
+|------------------+-------------------------------------------------------------------|
