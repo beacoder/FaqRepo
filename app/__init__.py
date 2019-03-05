@@ -15,6 +15,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_bootstrap import Bootstrap
+
 
 # member variables of app-package
 app = Flask(__name__)
@@ -24,6 +26,8 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'  # indicate which function handles login
 mail = Mail(app)
+bootstrap = Bootstrap(app)
+
 
 # place at bottom to avoid circular imports
 from app import routes, models
