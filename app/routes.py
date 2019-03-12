@@ -19,9 +19,8 @@ from app.mail import send_password_reset_email
 
 @app.route('/')
 @app.route('/index')
-@login_required
+# @login_required
 def index():
-    user = {'username': 'Huming'}
     posts = [
         {
             'author': {'username': 'John'},
