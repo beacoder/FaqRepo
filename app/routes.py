@@ -4,7 +4,7 @@
 
 import sys
 if sys.platform == 'darwin':
-    sys.path.insert(0, "/Users/chenhuming/workspace/FaqRepo/venv/lib/python3.7/site-packages")
+    sys.path.insert(0, "/Users/chenhuming/workspace/faqrepo/venv/lib/python3.7/site-packages")
 else:
     sys.path.insert(0, "/home/ehumche/private/py3-lib/lib/python3.5/site-packages")
 
@@ -14,7 +14,7 @@ from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, Res
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
-from app.email import send_password_reset_email
+from app.mail import send_password_reset_email
 
 
 @app.route('/')

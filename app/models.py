@@ -3,7 +3,7 @@
 
 import sys
 if sys.platform == 'darwin':
-    sys.path.insert(0, "/Users/chenhuming/workspace/FaqRepo/venv/lib/python3.7/site-packages")
+    sys.path.insert(0, "/Users/chenhuming/workspace/faqrepo/venv/lib/python3.7/site-packages")
 else:
     sys.path.insert(0, "/home/ehumche/private/py3-lib/lib/python3.5/site-packages")
 
