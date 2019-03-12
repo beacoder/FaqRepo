@@ -1,3 +1,3 @@
 # FaqRepo
 
-Develop web service for question/answer for personal usage with Flask.
+Develop web service of question/answer for personal usage with Flask.
