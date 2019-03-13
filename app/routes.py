@@ -10,9 +10,10 @@ else:
 
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, \
+ResetPasswordForm, NewPostForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User
+from app.models import User, Post
 from werkzeug.urls import url_parse
 from app.mail import send_password_reset_email
 
@@ -21,16 +22,7 @@ from app.mail import send_password_reset_email
 @app.route('/index')
 # @login_required
 def index():
-    posts = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
+    posts = Post.query.all()
     return render_template('index.html', title='Home', posts=posts)
 
 
@@ -110,3 +102,18 @@ def reset_password(token):
         return redirect(url_for('login'))
     # render reset_password page for user to fill data
     return render_template('reset_password.html', form=form)
+
+
+@app.route('/new_post', methods=['GET', 'POST'])
+@login_required
+def new_post():
+    form = NewPostForm()
+    # validate user filled new_post data
+    if form.validate_on_submit():
+        post = Post(title=form.title.data, body=form.body.data)
+        db.session.add(post)
+        db.session.commit()
+        flash('Congratulations, you have created a new post!')
+        return redirect(url_for('index'))
+    # render new_post page for user to fill data
+    return render_template('new_post.html', title='New Post', form=form)
