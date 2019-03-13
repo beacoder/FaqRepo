@@ -110,7 +110,7 @@ def new_post():
     form = NewPostForm()
     # validate user filled new_post data
     if form.validate_on_submit():
-        post = Post(title=form.title.data, body=form.body.data)
+        post = Post(title=form.title.data, body=form.body.data, author=current_user)
         db.session.add(post)
         db.session.commit()
         flash('Congratulations, you have created a new post!')
