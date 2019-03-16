@@ -50,6 +50,16 @@
         {% endif %}
         {% endwith %}
 
+        <div id="left-sidebar" class="left-sidebar" style="float:left;width:20%;">
+            <div class="list-group" >
+                <h3>Categories</h1>
+                <a href="#" class="list-group-item">First item</a>
+                <a href="#" class="list-group-item">Second item</a>
+                <a href="#" class="list-group-item">Third item</a>
+            </div>
+        </div>
+        <div id="dummy" style="float:left;width=5%"><span style="border: 10px solid transparent"></span></div>
+
         {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
     </div>

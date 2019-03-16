@@ -55,5 +55,5 @@ class ResetPasswordForm(FlaskForm):
 
 class NewPostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    body = TextAreaField('Body', validators=[DataRequired(), Length(min=0, max=140)])
-    submit = SubmitField('New Post')
+    body = TextAreaField('Content', validators=[DataRequired(), Length(min=0, max=140)])
+    submit = SubmitField('Submit')

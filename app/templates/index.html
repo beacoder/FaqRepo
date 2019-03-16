@@ -1,20 +1,18 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <div id="left-sidebar" class="left-sidebar" style="float:left;width:20%;">
-        <div class="list-group" >
-            <h3>Categories</h1>
-            <a href="#" class="list-group-item">First item</a>
-            <a href="#" class="list-group-item">Second item</a>
-            <a href="#" class="list-group-item">Third item</a>
-        </div>
-    </div>
-    <div id="dummy" style="float:left;width=5%"><span style="border: 10px solid transparent"></span></div>
-    <div id="content" style="float:left;width:50%">
-    {# <h1>Hi, {{ current_user.username }}!</h1> #}
+    <div id="post-list" style="float:left;width:50%">
     <h3>Posts</h1>
     {% for post in posts %}
-    {% include '_post.html' %}
+    <table class="table table-hover">
+        <tr>
+            <td>
+                <a href="{{ url_for('view_post', post_id=post.id) }}">
+                    <h4> {{ post.title }} </h4>
+                </a>
+            </td>
+        </tr>
+    </table>
     {% endfor %}
     </div>
 {% endblock %}

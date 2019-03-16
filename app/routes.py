@@ -117,3 +117,11 @@ def new_post():
         return redirect(url_for('index'))
     # render new_post page for user to fill data
     return render_template('new_post.html', title='New Post', form=form)
+
+
+@app.route('/view_post/<post_id>')
+def view_post(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+    if not post:
+        return redirect(url_for('index'))
+    return render_template('view_post.html', post=post)
