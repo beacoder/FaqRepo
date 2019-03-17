@@ -56,6 +56,7 @@ def load_user(id):
 
 class Post(db.Model):
     __tablename__ = 'posts'
+    __searchable__ = ['title', 'body']  # list fields to be indexed by search engine (elasticsearch)
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(140), index=True, unique=True)

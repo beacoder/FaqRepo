@@ -18,7 +18,7 @@ from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 from logging.handlers import RotatingFileHandler
 import os
-
+from elasticsearch import Elasticsearch
 
 # member variables of app-package
 app = Flask(__name__)
@@ -29,7 +29,10 @@ login = LoginManager(app)
 login.login_view = 'login'  # indicate which function handles login
 mail = Mail(app)
 bootstrap = Bootstrap(app)
+app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
+    if app.config['ELASTICSEARCH_URL'] else None
 
+# enable logging when in production mode
 if not app.debug:
     if not os.path.exists('logs'):
         os.mkdir('logs')
