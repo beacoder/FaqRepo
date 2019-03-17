@@ -20,7 +20,6 @@ from app.mail import send_password_reset_email
 
 @app.route('/')
 @app.route('/index')
-# @login_required
 def index():
     posts = Post.query.all()
     return render_template('index.html', title='Home', posts=posts)
@@ -125,6 +124,7 @@ def view_post(id):
 
 
 @app.route('/edit_post/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_post(id):
     post = Post.query.filter_by(id=id).first()
     if not post:
@@ -142,6 +142,7 @@ def edit_post(id):
 
 
 @app.route('/delete_post/<int:id>')
+@login_required
 def delete_post(id):
     post = Post.query.filter_by(id=id).first()
     if post:
