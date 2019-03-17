@@ -30,4 +30,4 @@ bootstrap = Bootstrap(app)
 
 
 # place at bottom to avoid circular imports
-from app import routes, models
+from app import routes, models, errors
