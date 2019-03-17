@@ -4,9 +4,11 @@
     <div id="content" style="float:left;width:50%">
         <h3> {{ post.title }} </h3>
         <hr>
-            <p> {{ post.body }} </p>
+            <pre class="pre-scrollable"> {{ post.body }} </pre>
             {% if current_user.id == post.author.id %}
             <a href="{{ url_for('edit_post', id=post.id) }}">Edit Post</a>
+            <span style="border: 5px solid transparent"></span>
+            <a href="{{ url_for('delete_post', id=post.id) }}">Delete Post</a>
             {% endif %}
         </div>
 {% endblock %}

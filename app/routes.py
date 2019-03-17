@@ -139,3 +139,13 @@ def edit_post(id):
         return redirect(url_for('view_post', id=post.id))
     # render form
     return render_template('edit_post.html', title='Edit Post', form=form)
+
+
+@app.route('/delete_post/<int:id>')
+def delete_post(id):
+    post = Post.query.filter_by(id=id).first()
+    if post:
+        db.session.delete(post)
+        db.session.commit()
+        flash('Post deleted successfully!')
+    return redirect(url_for('index'))
