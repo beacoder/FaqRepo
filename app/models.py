@@ -97,7 +97,7 @@ def load_user(id):
     return User.query.get(int(id))
 
 
-class Post(db.Model):
+class Post(SearchableMixin, db.Model):
     __tablename__ = 'posts'
     __searchable__ = ['title', 'body']  # list fields to be indexed by search engine (elasticsearch)
 

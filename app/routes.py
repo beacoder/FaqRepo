@@ -11,11 +11,12 @@ else:
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, ResetPasswordRequestForm, \
-ResetPasswordForm, NewPostForm
+ResetPasswordForm, NewPostForm, SearchForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Post
 from werkzeug.urls import url_parse
 from app.mail import send_password_reset_email
+from flask import g  # g stores data which needs to persist through the life of a request
 
 
 @app.route('/')
@@ -150,3 +151,23 @@ def delete_post(id):
         db.session.commit()
         flash('Post deleted successfully!')
     return redirect(url_for('index'))
+
+
+@app.before_request
+def before_request():
+    g.search_form = SearchForm()  # prepare search_form before request being handled.
+    # g.locale = str(get_locale())
+
+
+@app.route('/search')
+def search():
+    if not g.search_form.validate():
+        return redirect(url_for('index'))
+    page = request.args.get('page', 1, type=int)
+    posts, total = Post.search(g.search_form.q.data, page, app.config['POSTS_PER_PAGE'])
+    next_url = url_for('search', q=g.search_form.q.data, page=page + 1) \
+        if total > page * app.config['POSTS_PER_PAGE'] else None
+    prev_url = url_for('search', q=g.search_form.q.data, page=page - 1) \
+        if page > 1 else None
+    return render_template('search.html', title='Search', posts=posts,
+                           next_url=next_url, prev_url=prev_url)
