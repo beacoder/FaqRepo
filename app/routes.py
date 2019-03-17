@@ -31,19 +31,15 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
-    # validate user filled login data
+    # validate form data
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        # next_page = request.args.get('next')
-        # if not next_page or url_parse(next_page).netloc != '':
-        #     next_page = url_for('index')
-        # return redirect(next_page)
         return redirect(url_for('index'))
-    # render login page for user to fill data
+    # render form
     return render_template('login.html', title='Sign In', form=form)
 
 
@@ -58,7 +54,7 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
-    # validate user filled register data
+    # validate form data
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
@@ -66,7 +62,7 @@ def register():
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
-    # render register page for user to fill data
+    # render form
     return render_template('register.html', title='Register', form=form)
 
 
@@ -75,14 +71,14 @@ def reset_password_request():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = ResetPasswordRequestForm()
-    # validate user filled reset_password data
+    # validate form data
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             send_password_reset_email(user)
         flash('Check your email for the instructions to reset your password')
         return redirect(url_for('login'))
-    # render reset_password page for user to fill data
+    # render form
     return render_template('reset_password_request.html', title='Reset Password', form=form)
 
 
@@ -94,13 +90,13 @@ def reset_password(token):
     if not user:
         return redirect(url_for('index'))
     form = ResetPasswordForm()
-    # validate user filled reset_password data
+    # validate form data
     if form.validate_on_submit():
         user.set_password(form.password.data)
         db.session.commit()
         flash('Your password has been reset.')
         return redirect(url_for('login'))
-    # render reset_password page for user to fill data
+    # render form
     return render_template('reset_password.html', form=form)
 
 
@@ -108,20 +104,37 @@ def reset_password(token):
 @login_required
 def new_post():
     form = NewPostForm()
-    # validate user filled new_post data
+    # validate form data
     if form.validate_on_submit():
         post = Post(title=form.title.data, body=form.body.data, author=current_user)
         db.session.add(post)
         db.session.commit()
         flash('Congratulations, you have created a new post!')
         return redirect(url_for('index'))
-    # render new_post page for user to fill data
+    # render form
     return render_template('new_post.html', title='New Post', form=form)
 
 
-@app.route('/view_post/<post_id>')
-def view_post(post_id):
-    post = Post.query.filter_by(id=post_id).first()
+@app.route('/view_post/<int:id>')
+def view_post(id):
+    post = Post.query.filter_by(id=id).first()
     if not post:
         return redirect(url_for('index'))
-    return render_template('view_post.html', post=post)
+    return render_template('view_post.html', title='View Post', post=post)
+
+
+@app.route('/edit_post/<int:id>', methods=['GET', 'POST'])
+def edit_post(id):
+    post = Post.query.filter_by(id=id).first()
+    if not post:
+        return 'Error loading #{id}'.format(id=id)
+    form = NewPostForm(obj=post)
+    # validate form data
+    if request.method == 'POST' and form.validate():
+        post.title = form.title.data
+        post.body = form.body.data
+        db.session.commit()
+        flash('Post updated successfully!')
+        return redirect(url_for('view_post', id=post.id))
+    # render form
+    return render_template('edit_post.html', title='Edit Post', form=form)
