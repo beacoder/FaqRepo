@@ -118,9 +118,10 @@ def new_post():
 @app.route('/view_post/<int:id>')
 def view_post(id):
     post = Post.query.filter_by(id=id).first()
-    if not post:
+    if post:
+        return render_template('view_post.html', title='View Post', post=post)
+    else:
         return redirect(url_for('index'))
-    return render_template('view_post.html', title='View Post', post=post)
 
 
 @app.route('/edit_post/<int:id>', methods=['GET', 'POST'])
