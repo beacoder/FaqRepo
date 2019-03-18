@@ -21,7 +21,7 @@
   |------------------+-------------------------------------------------------------------|
   | Flask-Migrate    | Extension for flask to handle upgrade/downgrade with database     |
   |------------------+-------------------------------------------------------------------|
-  | Flask-Login      | Extension for flask to manages user logged-in state               |
+  | Flask-Login      | Extension for flask to manage user logged-in state                |
   |------------------+-------------------------------------------------------------------|
   | Flask-Mail       | Extension for flask to send mails                                 |
   |------------------+-------------------------------------------------------------------|
@@ -30,6 +30,8 @@
   | Flask-Bootstrap  | Extension for flask to use Bootstrap library to beautify websites |
   |------------------+-------------------------------------------------------------------|
   | elasticsearch    | Extension for flask to do full-text-search                        |
+  |------------------+-------------------------------------------------------------------|
+  | rq               | Redis queue for flask to publish tasks to background workers      |
   |------------------+-------------------------------------------------------------------|
 
 * DB migration
