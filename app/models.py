@@ -103,7 +103,7 @@ class Post(SearchableMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(140), index=True, unique=True)
-    body = db.Column(db.String(140))
+    body = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))  # foreignkey links to user table
 
