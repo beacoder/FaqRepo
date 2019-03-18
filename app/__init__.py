@@ -17,8 +17,8 @@ from flask_login import LoginManager
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 from logging.handlers import RotatingFileHandler
-import os
 from elasticsearch import Elasticsearch
+import os, logging
 
 # member variables of app-package
 app = Flask(__name__)

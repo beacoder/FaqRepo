@@ -6,7 +6,12 @@
 #+STARTUP: indent
 #+OPTIONS: html-postamble:nil
 
-* 3rd-part libs for flask
+* Environment setup
+- create project folder: mkdir microblog && cd microblog
+- python3 -m venv venv
+- source venv/bin/activate
+
+* Install 3rd-part libs
   |------------------+-------------------------------------------------------------------|
   | [[http://flask.pocoo.org/docs/1.0/][Flask]]            | Micro web-framework for building websites with python             |
   |------------------+-------------------------------------------------------------------|
