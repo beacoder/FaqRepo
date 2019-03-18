@@ -20,6 +20,7 @@ from logging.handlers import RotatingFileHandler
 from elasticsearch import Elasticsearch
 import os, logging
 
+
 # member variables of app-package
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -31,6 +32,7 @@ mail = Mail(app)
 bootstrap = Bootstrap(app)
 app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) \
     if app.config['ELASTICSEARCH_URL'] else None
+
 
 # enable logging when in production mode
 if not app.debug:

@@ -6,6 +6,9 @@
 #+STARTUP: indent
 #+OPTIONS: html-postamble:nil
 
+* Flask tutorial
+[[https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world][Flask Mega-Tutorial]]
+
 * Environment setup
 - create project folder: mkdir microblog && cd microblog
 - python3 -m venv venv
