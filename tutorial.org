@@ -1,4 +1,4 @@
-#+title: FAQ for building FAQRepo
+#+title: Tutorial for building FAQRepo
 #+author: Huming.Chen
 #+email: chenhuming@gmail.com
 #+OPTIONS: toc:nil
